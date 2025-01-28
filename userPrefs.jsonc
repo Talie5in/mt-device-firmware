@@ -1,19 +1,18 @@
 {
-
   "USERPREFS_ENABLE_NEIGHBOR_INFO_BY_DEFAULT": "true",
   "USERPREFS_ALLOW_NEIGHBOR_INFO_ON_DEFAULT_CHANNEL": "true",
-  "USERPREFS_ALLOW_NODENUM_ASSIGNMENT": "false",  // Allow devices to set the nodenum on outgoing packets
+  "USERPREFS_ALLOW_NODENUM_ASSIGNMENT": "false", // Allow devices to set the nodenum on outgoing packets
   "USERPREFS_DISABLE_TRACEROUTE_THROTTLE": "true",
-  "USERPREFS_DISABLE_POSITION_THROTTLE": "false",
-  "USERPREFS_TRANSGRESS_OK_TO_MQTT": "true",  // Disregard OK_TO_MQTT bitfield flag when not using default MQTT
-  "USERPREFS_UPLINK_ALL_CHANNELS": "true",  // Uplink packets decrypted, regardless of whether uplink is a known channel or not (*exceptions apply)
-  "USERPREFS_UPLINK_ALL_PACKETS": "true",  // Uplink all packets, whether decoded, PKI encrypted, or not
-  "USERPREFS_UPLINK_REPEAT_PACKETS": "true",   // Uplink (but don't re-transmit/handle) packets that we've seen before
+  "USERPREFS_DISABLE_POSITION_THROTTLE": "true",
+  "USERPREFS_TRANSGRESS_OK_TO_MQTT": "true", // Disregard OK_TO_MQTT bitfield flag when not using default MQTT
+  "USERPREFS_UPLINK_ALL_CHANNELS": "false", // Uplink packets decrypted, regardless of whether uplink is a known channel or not (*exceptions apply)
+  "USERPREFS_UPLINK_ALL_PACKETS": "false", // Uplink all packets, whether decoded, PKI encrypted, or not
+  "USERPREFS_UPLINK_REPEAT_PACKETS": "true", // Uplink (but don't re-transmit/handle) packets that we've seen before
 
   // Overrides for channel limits
-   "USERPREFS_MAX_CHANNEL_UTIL_PERCENT": "40", 
-   "USERPREFS_POLITE_CHANNEL_UTIL_PERCENT": "25",
-   "USERPREFS_POLITE_DUTY_CYCLE_PERCENT": "50",
+  "USERPREFS_MAX_CHANNEL_UTIL_PERCENT": "40",
+  "USERPREFS_POLITE_CHANNEL_UTIL_PERCENT": "25",
+  "USERPREFS_POLITE_DUTY_CYCLE_PERCENT": "50",
 
   // Option to make selected areas send more imprecise position data
   // "USERPREFS_APPLY_POSITION_MASKS": "true",
@@ -76,8 +75,8 @@
   // "USERPREFS_FIXED_GPS_LON": "2.294508368",
   // "USERPREFS_LORACONFIG_CHANNEL_NUM": "31",
   // "USERPREFS_LORACONFIG_MODEM_PRESET": "meshtastic_Config_LoRaConfig_ModemPreset_SHORT_FAST",
-  // "USERPREFS_SPLASH_TITLE": "DEFCONtastic",
-  "USERPREFS_TZ_STRING": "tzplaceholder                                         "
+  "USERPREFS_SPLASH_TITLE": "SAMUG",
+  "USERPREFS_TZ_STRING": "tzplaceholder                                         ",
   // "USERPREFS_USE_ADMIN_KEY_0": "{ 0xcd, 0xc0, 0xb4, 0x3c, 0x53, 0x24, 0xdf, 0x13, 0xca, 0x5a, 0xa6, 0x0c, 0x0d, 0xec, 0x85, 0x5a, 0x4c, 0xf6, 0x1a, 0x96, 0x04, 0x1a, 0x3e, 0xfc, 0xbb, 0x8e, 0x33, 0x71, 0xe5, 0xfc, 0xff, 0x3c }",
   // "USERPREFS_USE_ADMIN_KEY_1": "{}",
   // "USERPREFS_USE_ADMIN_KEY_2": "{}"
