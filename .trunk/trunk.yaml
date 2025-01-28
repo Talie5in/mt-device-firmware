@@ -36,6 +36,7 @@ lint:
     - linters: [ALL]
       paths:
         - bin/**
+        - userPrefs.jsonc
 runtimes:
   enabled:
     - python@3.10.8
