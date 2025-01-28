@@ -75,7 +75,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: meshtastic/meshtasticd
+          images: talie5inau/meshtasticd
           tags: |
             GHA-${{ steps.version.outputs.long }}-${{ inputs.distro }}-${{ steps.sanitize_platform.outputs.cleaned_platform }}
           flavor: latest=false
