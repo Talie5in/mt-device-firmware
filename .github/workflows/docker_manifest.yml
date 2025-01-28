@@ -4,7 +4,7 @@ on:
   workflow_call:
     secrets:
       DOCKER_FIRMWARE_TOKEN:
-        required: true
+        required: false
     inputs:
       release_channel:
         description: Release channel to target
