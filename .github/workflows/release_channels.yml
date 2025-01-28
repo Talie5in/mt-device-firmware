@@ -16,6 +16,8 @@ jobs:
         ${{ contains(github.event.release.name, 'Beta') && 'beta' || contains(github.event.release.name, 'Alpha') && 'alpha' }}
     secrets: inherit
 
+  # Disable for Self
+
   # package-ppa:
   #   strategy:
   #     fail-fast: false
