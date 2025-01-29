@@ -342,10 +342,6 @@ jobs:
           merge-multiple: true
           path: ./output/debian-src
 
-      - name: Zip source deb
-        working-directory: output
-        run: zip -j -9 -r ./meshtasticd-${{ steps.version.outputs.deb }}-src.zip ./debian-src
-
       # For diagnostics
       - name: Display structure of downloaded files
         run: ls -lR
@@ -353,9 +349,7 @@ jobs:
       - name: Add deb files to release
         run: |
           gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_arm64.deb
-          gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_armhf.deb
           gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_amd64.deb
-          gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd-${{ steps.version.outputs.deb }}-src.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -363,9 +357,9 @@ jobs:
         run: >-
           bin/bump_version.py
 
-      - name: Update debian changelog
-        run: >-
-          debian/ci_changelog.sh
+      # - name: Update debian changelog
+      #   run: >-
+      #     debian/ci_changelog.sh
 
       - name: Create version.properties pull request
         uses: peter-evans/create-pull-request@v7
