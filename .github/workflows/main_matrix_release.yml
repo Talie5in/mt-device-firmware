@@ -186,7 +186,7 @@ jobs:
 
   after-checks:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'release' }}
+    if: ${{ github.event_name != 'workflow_dispatch' }}
     needs: [check]
     steps:
       - name: Checkout code
@@ -290,7 +290,7 @@ jobs:
 
   release-artifacts:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'release' }}
     outputs:
       upload_url: ${{ steps.create_release.outputs.upload_url }}
     needs: [
@@ -381,7 +381,7 @@ jobs:
       matrix:
         arch: [esp32, esp32s3, esp32c3, esp32c6, nrf52840, rp2040, stm32]
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' }}
+    if: ${{ github.event_name == 'release' }}
     needs: [release-artifacts]
     steps:
       - name: Checkout
@@ -430,14 +430,5 @@ jobs:
         run: |
           gh release upload v${{ steps.version.outputs.long }} ./firmware-${{matrix.arch}}-${{ steps.version.outputs.long }}.zip
           gh release upload v${{ steps.version.outputs.long }} ./debug-elfs-${{matrix.arch}}-${{ steps.version.outputs.long }}.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # Send zips to release
-
-      - name: Upload firmware zip to release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ./firmware-${{matrix.arch}}-${{ steps.version.outputs.long }}.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
