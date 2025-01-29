@@ -295,7 +295,7 @@ jobs:
     needs: [
         gather-artifacts,
         package-raspbian,
-        package-raspbian-armv7l,
+        # package-raspbian-armv7l,
         package-native,
         # build-debian-src,
       ]
