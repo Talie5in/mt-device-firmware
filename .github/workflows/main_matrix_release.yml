@@ -367,7 +367,7 @@ jobs:
       #     title: Bump version.properties
       #     add-paths: |
       #       version.properties
-      #       debian/changelog
+      ##       debian/changelog
 
   release-firmware:
     strategy:
