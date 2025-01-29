@@ -186,7 +186,7 @@ jobs:
 
   after-checks:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'workflow_dispatch' }}
+    if: ${{ github.event_name != 'release' }}
     needs: [check]
     steps:
       - name: Checkout code
