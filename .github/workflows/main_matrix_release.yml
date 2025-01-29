@@ -361,13 +361,13 @@ jobs:
       #   run: >-
       #     debian/ci_changelog.sh
 
-      - name: Create version.properties pull request
-        uses: peter-evans/create-pull-request@v7
-        with:
-          title: Bump version.properties
-          add-paths: |
-            version.properties
-            debian/changelog
+      # - name: Create version.properties pull request
+      #   uses: peter-evans/create-pull-request@v7
+      #   with:
+      #     title: Bump version.properties
+      #     add-paths: |
+      #       version.properties
+      #       debian/changelog
 
   release-firmware:
     strategy:
