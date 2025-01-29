@@ -353,9 +353,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Bump version.properties
-        run: >-
-          bin/bump_version.py
+      # - name: Bump version.properties
+      #   run: >-
+      #     bin/bump_version.py
 
       # - name: Update debian changelog
       #   run: >-
