@@ -152,6 +152,12 @@ jobs:
   # test-native:
   #   uses: ./.github/workflows/test_native.yml
 
+  package-pio-deps-native:
+    uses: ./.github/workflows/package_pio_deps.yml
+    with:
+      pio_env: native
+    secrets: inherit
+
   docker-debian-amd64:
     uses: ./.github/workflows/docker_build.yml
     with:
@@ -299,6 +305,7 @@ jobs:
         # package-raspbian-armv7l,
         package-native,
         # build-debian-src,
+        package-pio-deps-native,
       ]
     steps:
       - name: Checkout
