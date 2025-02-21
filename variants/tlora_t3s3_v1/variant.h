@@ -1,5 +1,6 @@
 #define HAS_SDCARD
 #define SDCARD_USE_SPI1
+#define HAS_SCREEN 0
 
 #define USE_SSD1306
 
