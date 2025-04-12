@@ -1,11 +1,3 @@
-# Meshtastic Firmware
-
-![GitHub release downloads](https://img.shields.io/github/downloads/meshtastic/firmware/total)
-[![CI](https://img.shields.io/github/actions/workflow/status/meshtastic/firmware/main_matrix.yml?branch=master&label=actions&logo=github&color=yellow)](https://github.com/meshtastic/firmware/actions/workflows/ci.yml)
-[![CLA assistant](https://cla-assistant.io/readme/badge/meshtastic/firmware)](https://cla-assistant.io/meshtastic/firmware)
-[![Fiscal Contributors](https://opencollective.com/meshtastic/tiers/badge.svg?label=Fiscal%20Contributors&color=deeppink)](https://opencollective.com/meshtastic/)
-[![Vercel](https://img.shields.io/static/v1?label=Powered%20by&message=Vercel&style=flat&logo=vercel&color=000000)](https://vercel.com?utm_source=meshtastic&utm_campaign=oss)
-
 ## Overview
 
 This repository contains a modified version of the [Meshtastic project's](https://meshtastic.org/) device [firmware](https://github.com/meshtastic/firmware), to allow for:
@@ -63,7 +55,14 @@ By default, these masks apply for _all_ channels. The additional USERPREFS_MASK_
 ### Other settings
 
 Best not to change these unnecessarily:
+<<<<<<< HEAD
 
 - USERPREFS_MAX_CHANNEL_UTIL_PERCENT: Override for the upper limit on channel util at which nodes will not transmit non-critical messages.
 - USERPREFS_POLITE_CHANNEL_UTIL_PERCENT: Override for the lower limit (applies to certain node roles).
-- USERPREFS_POLITE_DUTY_CYCLE_PERCENT: Override for the limit on airtime usage.
+- # USERPREFS_POLITE_DUTY_CYCLE_PERCENT: Override for the limit on airtime usage.
+
+* USERPREFS_MAX_CHANNEL_UTIL_PERCENT: Override for the upper limit on channel util at which nodes will not transmit non-critical messages.
+* USERPREFS_POLITE_CHANNEL_UTIL_PERCENT: Override for the lower limit (applies to certain node roles).
+* USERPREFS_POLITE_DUTY_CYCLE_PERCENT: Override for the limit on airtime usage.
+
+> > > > > > > remote/master

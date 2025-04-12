@@ -19,6 +19,10 @@
 #include "mesh/wifi/WiFiAPClient.h"
 #include <WiFi.h>
 #endif
+#if HAS_ETHERNET && defined(USE_WS5500)
+#include <ETHClass2.h>
+#define ETH ETH2
+#endif // HAS_ETHERNET
 #include "Default.h"
 #if !defined(ARCH_NRF52) || NRF52_USE_JSON
 #include "serialization/JSON.h"
@@ -113,7 +117,8 @@ inline void onReceiveProto(char *topic, byte *payload, size_t length)
         // likely they discovered each other via a channel we have downlink enabled for
         if (isToUs(p.get()) || (tx && tx->has_user && rx && rx->has_user))
             router->enqueueReceivedMessage(p.release());
-    } else if (router && perhapsDecode(p.get())) // ignore messages if we don't have the channel key
+    } else if (router &&
+               perhapsDecode(p.get()) == DecodeState::DECODE_SUCCESS) // ignore messages if we don't have the channel key
         router->enqueueReceivedMessage(p.release());
 }
 
@@ -295,6 +300,11 @@ bool connectPubSub(const PubSubConfig &config, PubSubClient &pubSub, Client &cli
 
 inline bool isConnectedToNetwork()
 {
+#ifdef USE_WS5500
+    if (ETH.connected())
+        return true;
+#endif
+
 #if HAS_WIFI
     return WiFi.isConnected();
 #elif HAS_ETHERNET
@@ -669,12 +679,12 @@ void MQTT::onSend(const meshtastic_MeshPacket &mp_encrypted, const meshtastic_Me
         return; // Don't send messages that came from MQTT back into MQTT
 
 #if USERPREFS_UPLINK_ALL_CHANNELS
-    bool uplinkEnabled = false;
+    bool any_uplink_enabled = false;
     for (int i = 0; i <= 7; i++) {
         if (channels.getByIndex(i).settings.uplink_enabled)
-            uplinkEnabled = true;
+            any_uplink_enabled = true;
     }
-    if (!uplinkEnabled)
+    if (!any_uplink_enabled)
         return; // no channels have an uplink enabled
 #endif
     auto &ch = channels.getByIndex(chIndex);
@@ -706,14 +716,14 @@ void MQTT::onSend(const meshtastic_MeshPacket &mp_encrypted, const meshtastic_Me
     // Either encrypted packet (we couldn't decrypt) is marked as pki_encrypted, or we could decode the PKI encrypted packet
     bool isPKIEncrypted = mp_encrypted.pki_encrypted || mp_decoded.pki_encrypted;
 
-#if USERPREFS_UPLINK_ALL_CHANNELS
+#if !USERPREFS_UPLINK_ALL_CHANNELS
     // If it was to a channel, check uplink enabled, else must be pki_encrypted
     if (!(ch.settings.uplink_enabled || isPKIEncrypted))
         return;
 #else
     // Do not uplink unless uplink is enabled on the channel, we don't know the channel (ch.index set to -1), or it was pki_encrypted
-    // This allows devices with UPLINK_ALL_CHANNEL set to still have channels with uplink disabled
-    if (!(ch.settings.uplink_enabled || ch.index == -1 || isPKIEncrypted))
+    // This allows devices with UPLINK_ALL_CHANNELS set to still have channels with uplink disabled (or to disable all uplinks by having none enabled)
+    if (!(ch.settings.uplink_enabled || (ch.index == -1 && any_uplink_enabled)|| isPKIEncrypted))
         return;
 #endif
 
