@@ -374,12 +374,12 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Add deb files to release
-        run: |
-          gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_arm64.deb
-          gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_amd64.deb
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Add deb files to release
+      #   run: |
+      #     gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_arm64.deb
+      #     gh release upload v${{ steps.version.outputs.long }} ./output/meshtasticd_${{ steps.version.outputs.long }}_amd64.deb
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # - name: Bump version.properties
       #   run: >-
